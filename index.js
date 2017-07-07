@@ -31,7 +31,7 @@ ECSData.getService(serviceParams)
       };
       ECSData.getService(serviceCopyParams)
         .then((serviceCopyData) => {
-          if (serviceCopyData === null || (serviceCopyData.desiredCount === 0 && serviceCopyData.runningCount === 0)) {
+          if (serviceCopyData === null || serviceCopyData.status === "INACTIVE") {
             resolve(serviceData);
             return;
           }
