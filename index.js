@@ -23,30 +23,30 @@ const serviceParams = {
 
 
 ECSData.getService(serviceParams)
-    .then(serviceData => new Promise((resolve, reject) => {
-        // Ensure the service name being copied doesn't already exist
-      const serviceCopyParams = {
-        clusterName,
-        serviceName: serviceCopyName,
-      };
-      ECSData.getService(serviceCopyParams)
-        .then((serviceCopyData) => {
-          if (serviceCopyData === null || serviceCopyData.status === "INACTIVE") {
-            resolve(serviceData);
-            return;
-          }
-          console.log(serviceCopyData);
-          reject('Service Already Exists');
-        })
-        .catch((err) => {
+  .then(serviceData => new Promise((resolve, reject) => {
+    // Ensure the service name being copied doesn't already exist
+    const serviceCopyParams = {
+      clusterName,
+      serviceName: serviceCopyName,
+    };
+    ECSData.getService(serviceCopyParams)
+      .then((serviceCopyData) => {
+        if (serviceCopyData === null || serviceCopyData.status === "INACTIVE") {
           resolve(serviceData);
-        });
-    }))
-    .then(service => ECSData.copyService({ serviceCopyName, service, desiredCount, clusterName }))
-    .then((data) => {
-      console.log(data);
-      console.log('Service Successfully Copied');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+          return;
+        }
+        console.log(serviceCopyData);
+        reject('Service Already Exists');
+      })
+      .catch((err) => {
+        resolve(serviceData);
+      });
+  }))
+  .then(service => ECSData.copyService({ serviceCopyName, service, desiredCount, clusterName }))
+  .then((data) => {
+    console.log(data);
+    console.log('Service Successfully Copied');
+  })
+  .catch((err) => {
+    console.log(err);
+  });

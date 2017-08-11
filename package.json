@@ -5,15 +5,19 @@
   "main": "index.js",
   "keywords": [
     "aws",
-    "ecs"
+    "ecs",
+    "copy"
   ],
   "bin": {
     "ecs-copy-service": "./index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miskiw/ecs-copy-service.git"
+  },
   "author": "Mike Iskiw",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.80.0",
-    "minimist": "^1.2.0"
+    "aws-sdk": "^2.96.0"
   }
 }
