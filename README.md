@@ -7,4 +7,6 @@ Command line tool to copy an AWS ECS service to another service with the same na
 ```
 $ ecs-copy-service --cluster my-ecs-cluster --service my-ecs-service --serviceCopyName my-ecs-service-copy
 ```
-##
+## AWS Region
+
+The AWS region is not hard-coded in the code, you need to specify it using the `AWS_REGION` environment variable.
